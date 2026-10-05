@@ -10,9 +10,9 @@ namespace KatalogProduktów
         public string Nazwa
         {
             get { return _nazwa; }
-            set 
-            { 
-                if(value == String.Empty)
+            set
+            {
+                if (value == String.Empty)
                 {
                     _nazwa = "Brak nazwy";
                     throw new ArgumentException("Nazwa nie może być pusta.");
@@ -31,7 +31,7 @@ namespace KatalogProduktów
             {
                 if (value < 0)
                 {
-                    _cena = 0; 
+                    _cena = 0;
                     throw new ArgumentException("Cena nie może być ujemna.");
                 }
                 else
@@ -41,6 +41,8 @@ namespace KatalogProduktów
             }
         }
         public string Kategoria;
+
+        public int MinimalnyStan { get; set; }
         public int Ilosc { get; private set; }
 
         public double WartoscMagazynu
@@ -57,6 +59,7 @@ namespace KatalogProduktów
             Cena = cena;
             Kategoria = kategoria;
             Ilosc = ilosc;
+            MinimalnyStan = 1;
         }
         public Produkt(string nazwa)
         {
@@ -64,6 +67,7 @@ namespace KatalogProduktów
             Cena = 0;
             Kategoria = "Brak kategorii";
             Ilosc = 0;
+            MinimalnyStan = 1;
         }
         //funkcja wypisująca informacje o produkcie w formacie tabelarycznym
         public void wypiszProdukt()
@@ -85,6 +89,27 @@ namespace KatalogProduktów
                 suma += produkt.WartoscMagazynu; //dodanie wartości magazynu produktu do sumy
             }
             return suma; //zwrócenie sumy wartości magazynu wszystkich produktów
+        }
+
+
+        public bool czyMoznaZamowic()
+        {
+            return Ilosc > MinimalnyStan; //zwraca true jeśli ilość jest większa od 0, w przeciwnym razie false
+        }
+        public void Sprzedaj()
+        {
+            if (czyMoznaZamowic()) //czy można zamówić - czy mamy dość na stanie?
+            {
+                //tak, zdejmij ze stanu jedną sztukę
+                Ilosc--;
+                //wypisz informację o sprzedaży
+                Console.WriteLine($"Sprzedano produkt: {Nazwa}. Pozostało na stanie: {Ilosc}");
+            }
+            else
+            {
+                //nie, nie można sprzedać, bo nie ma na stanie
+                Console.WriteLine($"Nie można sprzedać produktu: {Nazwa}. Brak na stanie.");
+            }
         }
     }
 }

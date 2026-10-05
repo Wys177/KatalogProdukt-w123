@@ -40,3 +40,13 @@ double srednia = suma / licznik;
 
 double wartoscMagazynu = Produkt.obliczWartoscMagazynu(produkty);
 Console.WriteLine($"Suma wartości magazynu wszystkich produktów: {wartoscMagazynu:F2} zł");
+
+
+foreach (Produkt produkt in produkty)
+{
+    produkt.Sprzedaj();
+    produkt.Sprzedaj();
+    produkt.Sprzedaj();
+    produkt.Sprzedaj();
+    produkt.Sprzedaj();
+}
