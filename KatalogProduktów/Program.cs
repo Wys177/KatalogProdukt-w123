@@ -68,3 +68,5 @@ foreach (Produkt produkt in produkty)
     produkt.Sprzedaj();
     produkt.Sprzedaj();
 }
+Produkt p = Produkt.znajdzPoNazwie(produkty, "Dysk SSD");
+Console.WriteLine($"Znaleziono produkt: {p.Nazwa}, Cena: {p.Cena} zł, Ilość: {p.Ilosc}");

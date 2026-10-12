@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace KatalogProduktów
+﻿namespace KatalogProduktów
 {
     internal class Produkt
     {
@@ -84,8 +80,8 @@ namespace KatalogProduktów
         public static double obliczWartoscMagazynu(Produkt[] produkty)
         {
             double suma = 0; // pusty licznik na sume
-            foreach (Produkt produkt in produkty) //dla każdego produktu w tablicy produktów
             {
+            foreach (Produkt produkt in produkty) //dla każdego produktu w tablicy produktów
                 suma += produkt.WartoscMagazynu; // dodajemy jego wartość magazynu do sumy
             }
             return suma; //na koniec zwracamy sumę wartości magazynu
@@ -114,6 +110,18 @@ namespace KatalogProduktów
                 //nie, nie można sprzedać, bo nie ma na stanie
                 Console.WriteLine($"Nie można sprzedać produktu: {Nazwa}. Brak na stanie.");
             }
+
+        }
+        public static Produkt znajdzPoNazwie(Produkt[] produkty, string nazwa)
+        {
+            foreach (var item in produkty)
+            {
+                if (item.Nazwa == nazwa)
+                {
+                    return item;
+                }
+            }
+            return null; //jeśli nie znaleziono produktu o podanej nazwie, zwracamy null
         }
     }
 }
