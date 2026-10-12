@@ -73,3 +73,14 @@ Console.WriteLine($"Znaleziono produkt: {p.Nazwa}, Cena: {p.Cena} zł, Ilość: 
 Produkt p2 = Produkt.znajdzPoNazwie(listaProduktow, "sila");
 Console.WriteLine($"Znaleziono produkt: {p2.Nazwa}, Cena: {p2.Cena} zł, Ilość: {p2.Ilosc}");
 
+
+listaProduktow.Add(new Produkt("Karta graficzna", 1999.99, "Podzespoły", 3)); //dodajemy nowy produkt do listy
+Produkt p3 = listaProduktow[0];
+int iloscProduktow = listaProduktow.Count; //zliczamy ilość produktów w liście
+listaProduktow.RemoveAt(0); //usuwamy produkt z listy po indeksie
+listaProduktow.Remove(p3); //usuwamy produkt z listy po referencji
+
+bool czyJest = listaProduktow.Contains(p3); //sprawdzamy czy produkt jest w liście
+
+listaProduktow.Clear();
+
