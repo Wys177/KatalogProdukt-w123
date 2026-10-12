@@ -81,8 +81,8 @@
         {
             double suma = 0; // pusty licznik na sume
             {
-            foreach (Produkt produkt in produkty) //dla każdego produktu w tablicy produktów
-                suma += produkt.WartoscMagazynu; // dodajemy jego wartość magazynu do sumy
+                foreach (Produkt produkt in produkty) //dla każdego produktu w tablicy produktów
+                    suma += produkt.WartoscMagazynu; // dodajemy jego wartość magazynu do sumy
             }
             return suma; //na koniec zwracamy sumę wartości magazynu
         }
@@ -122,6 +122,10 @@
                 }
             }
             return null; //jeśli nie znaleziono produktu o podanej nazwie, zwracamy null
+        }
+        public static Produkt znajdzPoNazwie(List<Produkt> produkty, string nazwa)
+        {
+            return produkty.FirstOrDefault(p => p.Nazwa.Contains(nazwa, StringComparison.OrdinalIgnoreCase)); //zwraca pierwszy produkt, którego nazwa zawiera podany ciąg znaków (ignorując wielkość liter), lub null jeśli nie znaleziono 
         }
     }
 }

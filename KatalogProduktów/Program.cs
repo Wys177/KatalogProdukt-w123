@@ -70,3 +70,6 @@ foreach (Produkt produkt in produkty)
 }
 Produkt p = Produkt.znajdzPoNazwie(produkty, "Dysk SSD");
 Console.WriteLine($"Znaleziono produkt: {p.Nazwa}, Cena: {p.Cena} zł, Ilość: {p.Ilosc}");
+Produkt p2 = Produkt.znajdzPoNazwie(listaProduktow, "sila");
+Console.WriteLine($"Znaleziono produkt: {p2.Nazwa}, Cena: {p2.Cena} zł, Ilość: {p2.Ilosc}");
+
