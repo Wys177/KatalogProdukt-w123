@@ -13,8 +13,16 @@ Produkt zasilacz = new Produkt("Zasilacz", 189.99, "Podzespoły", 5);
 
 //tworzymy tablicę produktów
 Produkt[] produkty = { procesor, ram, ssd, zasilacz };
+Produkt[] produkty2 = new Produkt[10]; //tworzymy pustą tablicę 10 produktów 
 
-foreach (Produkt produkt in produkty)
+List<Produkt> listaProduktow = new List<Produkt >();
+
+listaProduktow.Add(procesor);
+listaProduktow.Add(ram);
+listaProduktow.Add(ssd);
+listaProduktow.Add(zasilacz);
+
+foreach (Produkt produkt in listaProduktow)
 {
     produkt.wypiszProdukt(); //wywołujemy metodę wypiszProdukt dla każdego produktu w tablicy
 }
@@ -22,7 +30,7 @@ foreach (Produkt produkt in produkty)
 
 double suma = 0;
 int licznik = 0;
-
+//dla tablicy przechodzilismy "recznie" po indeksach
 for (int i = 0; i < nazwy.Length; i++)
 {
     // Do sumy trafiają tylko produkty droższe niż 200 zł
@@ -32,13 +40,23 @@ for (int i = 0; i < nazwy.Length; i++)
         licznik++;
     }
 }
+//dla listy mozemy uzyc LINQ do zsumowania calosci 
+double sumaListy = listaProduktow.Sum(p => p.Cena); //czytamy jako dla kazdego produktu sumuj jego pole cena
+
+List<Produkt> drogieProdukty = listaProduktow.Where(p => p.Cena > 200).ToList(); //tworzymy nową listę z produktami droższymi niż 200 zł
+//lub możemy od razu policzyć sumę cen produktów droższych niż 200 zł
+double sumaDrogichProduktow = listaProduktow.Where(p => p.Cena > 200).Sum(p => p.Cena);
 
 // Uwaga: przy pustym liczniku byłoby dzielenie przez zero
 double srednia = suma / licznik;
 //Console.WriteLine($"Ilość produktów w bazie: {nazwy.Length}");
 //Console.WriteLine($"Średnia cena: {srednia:F2} zł z {licznik} produktów");
 
-double wartoscMagazynu = Produkt.obliczWartoscMagazynu(produkty);
+double sredniaCena = listaProduktow.Average(p => p.Cena); //obliczamy średnią cenę produktów w liście
+
+double wartoscListy = Produkt.obliczWartoscMagazynu(listaProduktow);
+
+double wartoscMagazynu = Produkt.obliczWartoscMagazynu(listaProduktow);
 Console.WriteLine($"Suma wartości magazynu wszystkich produktów: {wartoscMagazynu:F2} zł");
 
 

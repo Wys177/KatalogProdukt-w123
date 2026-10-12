@@ -83,12 +83,16 @@ namespace KatalogProduktów
         }
         public static double obliczWartoscMagazynu(Produkt[] produkty)
         {
-            double suma = 0; //inicjalizacja zmiennej suma na 0
-            foreach (Produkt produkt in produkty) //iteracja po wszystkich produktach w tablicy
+            double suma = 0; // pusty licznik na sume
+            foreach (Produkt produkt in produkty) //dla każdego produktu w tablicy produktów
             {
-                suma += produkt.WartoscMagazynu; //dodanie wartości magazynu produktu do sumy
+                suma += produkt.WartoscMagazynu; // dodajemy jego wartość magazynu do sumy
             }
-            return suma; //zwrócenie sumy wartości magazynu wszystkich produktów
+            return suma; //na koniec zwracamy sumę wartości magazynu
+        }
+        public static double obliczWartoscMagazynu(List<Produkt> produkty)
+        {
+            return produkty.Sum(p => p.WartoscMagazynu); //zwraca sumę wartości magazynu wszystkich produktów w liście
         }
 
 
